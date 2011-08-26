@@ -11,3 +11,4 @@ src/test-utils
 src/tower
 src/bleach
 src/funfactory
+src/django-session-csrf
