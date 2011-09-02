@@ -40,3 +40,6 @@
 [submodule "src/django-session-csrf"]
 	path = src/django-session-csrf
 	url = git://github.com/mozilla/django-session-csrf.git
+[submodule "src/django-browserid"]
+	path = src/django-browserid
+	url = git://github.com/mozilla/django-browserid.git

@@ -12,3 +12,5 @@ src/tower
 src/bleach
 src/funfactory
 src/django-session-csrf
+src/
+src/django-browserid
