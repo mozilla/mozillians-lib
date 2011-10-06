@@ -43,3 +43,6 @@
 [submodule "src/django-mobility"]
 	path = src/django-mobility
 	url = git://github.com/jbalogh/django-mobility
+[submodule "src/happyforms"]
+	path = src/happyforms
+	url = git://github.com/mozilla/happyforms.git

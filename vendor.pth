@@ -13,3 +13,4 @@ src/bleach
 src/funfactory
 src/django-session-csrf
 src/django-mobility
+src/happyforms
