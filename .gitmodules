@@ -46,3 +46,6 @@
 [submodule "src/happyforms"]
 	path = src/happyforms
 	url = git://github.com/mozilla/happyforms.git
+[submodule "src/django-cronjobs"]
+	path = src/django-cronjobs
+	url = git://github.com/jsocol/django-cronjobs.git
