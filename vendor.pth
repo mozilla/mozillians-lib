@@ -1,5 +1,6 @@
 src/commonware
 src/django
+src/django-browserid
 src/django-mozilla-product-details
 src/django-nose
 src/django-sha2
@@ -12,5 +13,4 @@ src/tower
 src/bleach
 src/funfactory
 src/django-session-csrf
-src/
-src/django-browserid
+src/django-mobility
