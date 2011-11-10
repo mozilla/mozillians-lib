@@ -49,3 +49,6 @@
 [submodule "src/django-cronjobs"]
 	path = src/django-cronjobs
 	url = git://github.com/jsocol/django-cronjobs.git
+[submodule "src/pystatsd"]
+	path = src/pystatsd
+	url = git://github.com/jsocol/pystatsd.git

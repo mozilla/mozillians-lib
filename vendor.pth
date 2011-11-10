@@ -15,3 +15,4 @@ src/django-session-csrf
 src/django-mobility
 src/happyforms
 src/django-cronjobs
+src/pystatsd
