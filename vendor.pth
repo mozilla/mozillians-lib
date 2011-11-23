@@ -17,3 +17,4 @@ src/happyforms
 src/django-cronjobs
 src/pystatsd
 src/django-csp
+src/django-multidb-router
