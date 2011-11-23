@@ -55,3 +55,6 @@
 [submodule "src/pystatsd"]
 	path = src/pystatsd
 	url = git://github.com/jsocol/pystatsd.git
+[submodule "src/django-csp"]
+	path = src/django-csp
+	url = git://github.com/mozilla/django-csp.git
