@@ -20,3 +20,4 @@ src/schematic
 src/test-utils
 src/tower
 src/elasticutils
+src/pyes
