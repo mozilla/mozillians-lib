@@ -12,6 +12,7 @@ src/django-session-csrf
 src/django-sha2
 src/funfactory
 src/happyforms
+src/httplib2
 src/jingo
 src/jingo-minify
 src/nuggets
