@@ -21,3 +21,4 @@ src/test-utils
 src/tower
 src/elasticutils
 src/pyes
+src/django-browserid
