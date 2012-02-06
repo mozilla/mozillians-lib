@@ -67,3 +67,6 @@
 [submodule "src/django-browserid"]
 	path = src/django-browserid
 	url = git://github.com/tallowen/django-browserid.git
+[submodule "src/django-tastypie"]
+	path = src/django-tastypie
+	url = git://github.com/toastdriven/django-tastypie
