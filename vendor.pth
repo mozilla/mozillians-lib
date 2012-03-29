@@ -25,3 +25,4 @@ src/django-browserid
 src/django-tastypie
 src/django-bootstrap
 src/django-browserid
+src/django-bootstrap-form

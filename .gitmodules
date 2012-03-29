@@ -70,6 +70,6 @@
 [submodule "src/django-tastypie"]
 	path = src/django-tastypie
 	url = git://github.com/toastdriven/django-tastypie
-[submodule "src/django-bootstrap"]
-	path = src/django-bootstrap
-	url = git://github.com/earle/django-bootstrap.git
+[submodule "src/django-bootstrap-form"]
+	path = src/django-bootstrap-form
+	url = git://github.com/tallowen/django-bootstrap-form.git
