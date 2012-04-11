@@ -26,3 +26,4 @@ src/django-tastypie
 src/django-bootstrap
 src/django-browserid
 src/django-bootstrap-form
+src/django-ajax-selects

@@ -73,3 +73,6 @@
 [submodule "src/django-bootstrap-form"]
 	path = src/django-bootstrap-form
 	url = git://github.com/tallowen/django-bootstrap-form.git
+[submodule "src/django-ajax-selects"]
+	path = src/django-ajax-selects
+	url = git://github.com/crucialfelix/django-ajax-selects.git
