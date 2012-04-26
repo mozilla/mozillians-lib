@@ -28,3 +28,4 @@ src/django-browserid
 src/django-bootstrap-form
 src/django-ajax-selects
 src/django-uuslug
+src/django-waffle
