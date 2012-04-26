@@ -76,3 +76,6 @@
 [submodule "src/django-ajax-selects"]
 	path = src/django-ajax-selects
 	url = git://github.com/crucialfelix/django-ajax-selects.git
+[submodule "src/django-uuslug"]
+	path = src/django-uuslug
+	url = git://github.com/un33k/django-uuslug.git
