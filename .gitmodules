@@ -60,7 +60,7 @@
 	url = git://github.com/jbalogh/django-multidb-router.git
 [submodule "src/elasticutils"]
 	path = src/elasticutils
-	url = git://github.com/glogiotatidis/elasticutils.git
+	url = git://github.com/mozilla/elasticutils.git
 [submodule "src/pyes"]
 	path = src/pyes
 	url = git://github.com/aparo/pyes.git
