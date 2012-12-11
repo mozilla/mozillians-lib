@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from datetime import datetime
 from itertools import count
 from time import time
@@ -6,8 +8,10 @@ from celery.events import Event
 from celery.events.state import State, Worker, Task
 from celery.utils import gen_unique_id
 
+from djcelery import celery
 from djcelery import snapshot
 from djcelery import models
+from djcelery.utils import make_aware
 from djcelery.tests.utils import unittest
 
 _next_id = count(0).next
@@ -43,7 +47,7 @@ class test_Camera(unittest.TestCase):
         for t in t1, t2, t3:
             worker.on_heartbeat(timestamp=t)
         self.assertEqual(self.cam.get_heartbeat(worker),
-                        datetime.fromtimestamp(t3))
+                        make_aware(datetime.fromtimestamp(t3)))
 
     def test_handle_worker(self):
         worker = Worker(hostname="fuzzie")
@@ -69,7 +73,7 @@ class test_Camera(unittest.TestCase):
         self.assertEqual(mt.name, task.name)
         self.assertTrue(unicode(mt))
         self.assertTrue(repr(mt))
-        mt.eta = datetime.now()
+        mt.eta = celery.now()
         self.assertIn("eta", unicode(mt))
         self.assertIn(mt, models.TaskState.objects.active())
 

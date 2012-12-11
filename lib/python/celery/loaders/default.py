@@ -1,70 +1,48 @@
+# -*- coding: utf-8 -*-
+"""
+    celery.loaders.default
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    The default loader used when no custom app has been initialized.
+
+"""
+from __future__ import absolute_import
+
 import os
 import warnings
-from importlib import import_module
 
-from celery.loaders.base import BaseLoader
-from celery.datastructures import AttributeDict
+from celery.datastructures import DictAttribute
 from celery.exceptions import NotConfigured
+from celery.utils import strtobool
 
-DEFAULT_CONFIG_MODULE = "celeryconfig"
+from .base import BaseLoader
 
-DEFAULT_SETTINGS = {
-    "DEBUG": False,
-    "ADMINS": (),
-    "CELERY_IMPORTS": (),
-    "CELERY_TASK_ERROR_WHITELIST": (),
-}
+DEFAULT_CONFIG_MODULE = 'celeryconfig'
 
-DEFAULT_UNCONFIGURED_SETTINGS = {
-    "CELERY_RESULT_BACKEND": "amqp",
-}
-
-
-def wanted_module_item(item):
-    return not item.startswith("_")
+#: Warns if configuration file is missing if :envvar:`C_WNOCONF` is set.
+C_WNOCONF = strtobool(os.environ.get('C_WNOCONF', False))
 
 
 class Loader(BaseLoader):
-    """The default loader.
-
-    See the FAQ for example usage.
-
-    """
+    """The loader used by the default app."""
 
     def setup_settings(self, settingsdict):
-        settings = AttributeDict(DEFAULT_SETTINGS, **settingsdict)
-        settings.CELERY_TASK_ERROR_WHITELIST = tuple(
-                getattr(import_module(mod), cls)
-                    for fqn in settings.CELERY_TASK_ERROR_WHITELIST
-                        for mod, cls in (fqn.rsplit('.', 1), ))
-
-        return settings
+        return DictAttribute(settingsdict)
 
     def read_configuration(self):
-        """Read configuration from ``celeryconfig.py`` and configure
+        """Read configuration from :file:`celeryconfig.py` and configure
         celery and Django so it can be used by regular Python."""
-        configname = os.environ.get("CELERY_CONFIG_MODULE",
-                                    DEFAULT_CONFIG_MODULE)
+        configname = os.environ.get('CELERY_CONFIG_MODULE',
+                                     DEFAULT_CONFIG_MODULE)
         try:
-            celeryconfig = self.import_from_cwd(configname)
+            usercfg = self._import_config_module(configname)
         except ImportError:
-            warnings.warn("No celeryconfig.py module found! Please make "
-                          "sure it exists and is available to Python.",
-                          NotConfigured)
-            return self.setup_settings(DEFAULT_UNCONFIGURED_SETTINGS)
+            # billiard sets this if forked using execv
+            if C_WNOCONF and not os.environ.get('FORKED_BY_MULTIPROCESSING'):
+                warnings.warn(NotConfigured(
+                    'No %r module found! Please make sure it exists and '
+                    'is available to Python.' % (configname, )))
+            return self.setup_settings({})
         else:
-            usercfg = dict((key, getattr(celeryconfig, key))
-                            for key in dir(celeryconfig)
-                                if wanted_module_item(key))
             self.configured = True
             return self.setup_settings(usercfg)
-
-    def on_worker_init(self):
-        """Imports modules at worker init so tasks can be registered
-        and used by the worked.
-
-        The list of modules to import is taken from the
-        :setting:`CELERY_IMPORTS` setting.
-
-        """
-        self.import_default_modules()
